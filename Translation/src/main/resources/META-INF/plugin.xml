@@ -1,0 +1,90 @@
+<idea-plugin>
+    <id>com.miaozi.Translation</id>
+    <name>Translation</name>
+    <vendor email="1353263604@qq.com" url="https://github.com/miaoweiwei">miaozi</vendor>
+
+    <description><![CDATA[
+    This is a translation plugin that uses Google Translate.<br>
+    <em>translation</em>
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="translation" secondary="true" icon="/images/translation.png" anchor="right"
+                    factoryClass="com.miaozi.plugin.window.WindowFactory"/>
+    </extensions>
+
+
+    <actions>
+        <!-- Add your actions here -->
+        <group id="translation.PluginMenu" text="Greeting" description="Greeting menu">
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="translation.Textboxes" class="com.miaozi.plugin.actions.HelloAction" text="Hello"
+                    description="Says hello"/>
+        </group>
+
+        <action id="translation.ConfigAction" class="com.miaozi.plugin.actions.ConfigAction"
+                text="Settings" description="Settings" icon="AllIcons.General.GearPlain">
+        </action>
+        <action id="translation.HelpAction" class="com.miaozi.plugin.actions.HelpAction"
+                text="Help" description="Help" icon="AllIcons.Actions.Help">
+        </action>
+
+        <!--主导航栏-->
+        <group id="translation.NavigatorActionsToolbar">
+            <reference id="translation.ConfigAction"/>
+            <separator/>
+            <reference id="translation.HelpAction"/>
+        </group>
+
+        <!-- 源语言导航栏 -->
+        <group id="translation.SourceToolbar" text="Source" description="Source Language">
+            <action id="translation.Source.AutoIdentify"
+                    class="com.miaozi.plugin.actions.AutoIdentifyAction"
+                    text="Auto" description="Automatically identify language type">
+            </action>
+            <action id="translation.Source.Common.Chinese"
+                    class="com.miaozi.plugin.actions.ChineseAction"
+                    text="中文" description="Chinese">
+            </action>
+            <action id="translation.Source.Common.English"
+                    class="com.miaozi.plugin.actions.EnglishAction"
+                    text="英文" description="English">
+            </action>
+            <separator/>
+            <group id="translation.Source.SelectType" class="com.miaozi.plugin.actions.SelectTypeAction"
+                   popup="true" text="Choose Language" description="Choose a language">
+            </group>
+            <action id="translation.Source.translation"
+                    class="com.miaozi.plugin.actions.TranslationAction"
+                    text="Translation" description="Translation"
+                    icon="AllIcons.Actions.Execute">
+            </action>
+        </group>
+
+        <!--目标语言导航栏-->
+        <group id="translation.TargetToolbar" text="Target" description="Target Language">
+            <action id="translation.Target.Common.Chinese"
+                    class="com.miaozi.plugin.actions.ChineseAction"
+                    text="中文" description="Chinese">
+            </action>
+            <action id="translation.Target.Common.English"
+                    class="com.miaozi.plugin.actions.EnglishAction"
+                    text="英文" description="English">
+            </action>
+            <separator/>
+            <group id="translation.Target.SelectType" class="com.miaozi.plugin.actions.SelectTypeAction"
+                   popup="true" text="Default Language" description="Choose a language">
+            </group>
+        </group>
+
+        <action id="translation.hello.world" class="HelloWorldAction" text="HelloWorldAction"
+                description="Say Hello World">
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
